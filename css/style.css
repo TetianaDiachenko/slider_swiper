@@ -44,6 +44,11 @@
     left: 0;
 }
 
+.popup {
+    opacity: 0;
+    visibility: hidden;
+
+}
 
 .popup__body {
     min-width: 100%;
@@ -51,8 +56,8 @@
     align-items: center;
     justify-content: center;
     padding: 30px 10px;
-    opacity: 0;
-    visibility: hidden;
+    /* opacity: 0;
+    visibility: hidden; */
 }
 
 .popup__content {

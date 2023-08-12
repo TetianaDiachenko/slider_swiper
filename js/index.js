@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
   
-    videoIframes.forEach(function (iframe) {
+  videoIframes.forEach(function (iframe) {
       iframe.addEventListener("click", function () {
         console.log("clicked");
         const videoUrl = iframe.dataset.videoUrl; // Get the video URL from the data attribute
