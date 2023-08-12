@@ -48,16 +48,36 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
   
-  videoIframes.forEach(function (iframe, index) {
-    iframe.addEventListener("click", function () {
-      const videoUrl = iframe.src;
+    videoIframes.forEach(function (iframe) {
+      iframe.addEventListener("click", function () {
+        console.log("clicked");
+        const videoUrl = iframe.dataset.videoUrl; // Get the video URL from the data attribute
+        const popupIframes = document.querySelectorAll(".popup__slider iframe");
+        console.log(popupIframes);
 
-      popupSwiper.slideTo(index); // Go to the corresponding slide
-      popupSwiper.slides[index].querySelector("iframe").src = videoUrl;
-      videoPopup.style.visibility = "visible"; 
-      videoPopup.style.opacity = 1;
+        // Loop through the popup iframes to find the corresponding slide
+        popupIframes.forEach(function (popupIframe, popupIndex) {
+          if (popupIframe.dataset.index === iframe.dataset.index) {
+            popupSwiper.slideTo(popupIndex); // Go to the corresponding slide
+            popupIframe.src = videoUrl; // Set the video URL
+          }
+        });
+
+        videoPopup.style.visibility = "visible";
+        videoPopup.style.opacity = 1;
+      });
     });
-  });
+  
+  // videoIframes.forEach(function (iframe, index) {
+  //   iframe.addEventListener("click", function () {
+  //     const videoUrl = iframe.src;
+
+  //     popupSwiper.slideTo(index); // Go to the corresponding slide
+  //     popupSwiper.slides[index].querySelector("iframe").src = videoUrl;
+  //     videoPopup.style.visibility = "visible"; 
+  //     videoPopup.style.opacity = 1;
+  //   });
+  // });
 
   videoPopup.addEventListener("click", function () {
     popupSwiper.slides.forEach(function (slide) {
