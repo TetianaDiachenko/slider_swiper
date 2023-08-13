@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const videoIframes = document.querySelectorAll(".video-box > iframe");
+  const videoIframes = document.querySelectorAll(".video-box > .overlay + iframe");
+  const mainSlider = document.querySelector(".slider_container");
   const videoPopup = document.getElementById("popup");
+  const closePopup = document.querySelector(".popup__close");
+
 
   // Main Slider //
 
@@ -47,44 +50,36 @@ document.addEventListener("DOMContentLoaded", function () {
       dynamicBullet: true,
     },
   });
-  
+
   videoIframes.forEach(function (iframe) {
-      iframe.addEventListener("click", function () {
-        console.log("clicked");
-        const videoUrl = iframe.dataset.videoUrl; // Get the video URL from the data attribute
-        const popupIframes = document.querySelectorAll(".popup__slider iframe");
-        console.log(popupIframes);
+    iframe.previousElementSibling.addEventListener("click", function () {
+      console.log("clicked");
+      const videoUrl = iframe.dataset.videoUrl; 
+      const popupIframes = document.querySelectorAll(".popup__slider iframe");
 
-        // Loop through the popup iframes to find the corresponding slide
-        popupIframes.forEach(function (popupIframe, popupIndex) {
-          if (popupIframe.dataset.index === iframe.dataset.index) {
-            popupSwiper.slideTo(popupIndex); // Go to the corresponding slide
-            popupIframe.src = videoUrl; // Set the video URL
-          }
-        });
-
-        videoPopup.style.visibility = "visible";
-        videoPopup.style.opacity = 1;
+      popupIframes.forEach(function (popupIframe, popupIndex) {
+        if (popupIframe.dataset.index === iframe.dataset.index) {
+          popupSwiper.slideTo(popupIndex); 
+          popupIframe.src = videoUrl; // Set the video URL
+        }
       });
+
+      videoPopup.style.visibility = "visible";
+      videoPopup.style.opacity = 1;
+      mainSlider.style.visibility = "hidden";
+      mainSlider.style.opasity = 0;
     });
-  
-  // videoIframes.forEach(function (iframe, index) {
-  //   iframe.addEventListener("click", function () {
-  //     const videoUrl = iframe.src;
+  });
 
-  //     popupSwiper.slideTo(index); // Go to the corresponding slide
-  //     popupSwiper.slides[index].querySelector("iframe").src = videoUrl;
-  //     videoPopup.style.visibility = "visible"; 
-  //     videoPopup.style.opacity = 1;
-  //   });
-  // });
 
-  videoPopup.addEventListener("click", function () {
+  closePopup.addEventListener("click", function () {
     popupSwiper.slides.forEach(function (slide) {
-      slide.querySelector("iframe").src = ""; 
+      slide.querySelector("iframe").src = "";
     });
-      videoPopup.style.visibility = "hidden";
-      videoPopup.style.opacity = 0;
+    videoPopup.style.visibility = "hidden";
+    videoPopup.style.opacity = 0;
+    mainSlider.style.visibility = "visible";
+    mainSlider.style.opasity = 1;
   });
 });
 
