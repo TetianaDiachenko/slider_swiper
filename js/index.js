@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const videoIframes = document.querySelectorAll(".swiper > .swiper-wrapper > .swiper-slide > .video-box > iframe");
+  const videoIframes = document.querySelectorAll(".video-box > iframe");
   const videoPopup = document.getElementById("popup");
 
   // Main Slider //
