@@ -5,8 +5,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.video-box iframe,
-.video-popup iframe {
+iframe {
     max-width: 100%;
 }
 

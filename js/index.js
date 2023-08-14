@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   videoIframes.forEach(function (iframe) {
     iframe.previousElementSibling.addEventListener("click", function () {
-      console.log("clicked");
+      // console.log("clicked");
       const videoUrl = iframe.dataset.videoUrl; 
       const popupIframes = document.querySelectorAll(".popup__slider iframe");
 
@@ -68,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
       videoPopup.style.opacity = 1;
       mainSlider.style.visibility = "hidden";
       mainSlider.style.opasity = 0;
+
     });
   });
 
